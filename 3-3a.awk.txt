@@ -1,0 +1,11 @@
+#entered in the cli, awk
+ls -l | awk '{print $1}' #print column 1
+ls -l | awk '{print $1,$9}' #print column 1 and 9
+ls -l | awk '{print $9,"->",$3}' #print -> in stout
+awk '$1>2000' /datafiles/invoices.txt #print column 1 thats >2000
+cat /datafiles/invoices.txt | awk '/Cust1/ {print $2,$1}'
+sed -n '/\bCust1\b/p' /datafiles/invoices.txt #set /b boundry for exactly "Cust1"
+sed -n '/\bCust1\b/p' /datafiles/invoices.txt | awk '/Cust1/ {print $2,$1}' #set /b boundry for exactly "Cust1"
+
+#just cut the eth devices out of ifconfig
+ifconfig | awk '$1 ~ "eth" { print $1 }'
