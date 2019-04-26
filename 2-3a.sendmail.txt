@@ -1,0 +1,16 @@
+#entered at cli requires sendmail or sms
+
+cat email.txt
+
+Subject: Script ran successfully
+
+Script: script1.sh
+Start time: 
+
+End time:
+Elasped time
+
+sendmail test@gmail.com < email.txt
+
+sendmail -bp
+
