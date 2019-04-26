@@ -1,0 +1,5 @@
+#entered in cli
+echo {a..f}{2010..2018}
+echo {001.56}
+echo {1..5}{a..z}
+echo {{1..5},{a..z}} #nesting
