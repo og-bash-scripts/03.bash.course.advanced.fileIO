@@ -1,0 +1,58 @@
+#entered in cli stream editor
+
+sed '/^$/d' /datafiles/payroll.txt #delete blank line
+sed -n '/chavez/!p' /datafiles/payroll.txt #dont pring chavez/
+	sed -n '/Albany/!p' /datafiles/cities.txt
+sed 's/^...//' /datafiles/payroll.txt #regex look for first three at beginning and replace with nothing
+sed '/^$/d' /datafiles/payroll.txt > payroll2.txt
+	sed -n '1,+2p' payroll2.txt
+	sed -n '1,~2p' payroll2.txt #every other line
+sed -n '/\bCust1\b/p' /datafiles/invoices.txt #set /b boundry for exactly "Cust1"
+	
+	
+sed -i "s/172.20.40/172.20.50/g" /var/named/master/*
+sed -i "s/172.20.41/172.20.51/g" /var/named/master/*
+sed -i "s/172.20.40/172.20.50/g" /etc/named.conf
+sed -i "s/172.20.41/172.20.51/g" /etc/named.conf
+
+chattr -i /etc/resolv.conf
+echo "search dhsie.hawaii.gov statehub.hawaii.gov kpmg.tech" > /etc/resolv.conf
+echo "nameserver 172.20.50.4" >> /etc/resolv.conf
+chattr +i /etc/resolv.conf
+cat /etc/resolv.conf
+df -h
+cat /etc/sysconfig/iptables
+sed -i "s/172.20.41/172.20.51/g" /etc/sysconfig/iptables
+cat /etc/sysconfig/iptables
+service iptables restart
+
+CHANGE NFS SHARE				
+psd02vsbl01	172.20.51.20			
+	cat /etc/exports			
+	chattr -i /etc/exports			
+	echo "/u01/sfs 172.20.51.24(ro)" > /etc/exports			
+	chattr +i /etc/resolv.conf			
+	cat /etc/exports			
+	service nfs restart			
+psd02vswe01	172.20.51.24			
+	chown -R oracle:oinstall /u01/sfs			
+	chmod 777 /u01/sfs			
+	ll /u01			
+	cat /etc/fstab			
+	sed -i "s/172.20.41/172.20.51/g" /etc/fstab			
+	cat /etc/fstab			
+	mount -a			
+	df -h			
+Database startup				
+	sudo su - oracle			
+	. ./setenv.env			
+	lsnrctl status			
+		lsnrctl start #if needed		
+	ps -ef | grep -i pmon			
+		tail -f /u01/app/oracle/product/11.2.0/dbhome_1/startup.log		
+	dbstart #if needed		/u01/app/oracle/product/11.2.0/dbhome_1/bin/dbstart	
+	ps -ef | grep -i pmon			
+	env			
+				
+				
+	export ORACLE_SID=DEV1MDM; echo startup | sqlplus / as sysdba			
