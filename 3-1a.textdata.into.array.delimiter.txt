@@ -1,0 +1,10 @@
+#entered in cli
+
+mapfile -t cityarray < "/datafiles/cities.txt"
+echo ${cityarray[*]}
+echo ${cityarray[0]}
+echo ${cityarray[1]}
+
+mapfile -d "," salinity_array < /datafiles/salinity_readings.txt #, is delimiter
+
+mapfile -td "," salinity_array < /datafiles/salinity_readings.txt #removes tailing , as well
